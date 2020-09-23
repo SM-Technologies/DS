@@ -30,10 +30,7 @@ class AmazonCrawler(CrawlSpider):
 
         'DEPTH_LIMIT': 10
     }
-        # 'PROXY_POOL_ENABLED': True
-        # 'DOWNLOADER_MIDDLEWARES' : {'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None, 'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 500}
-        # 'CUSTOM_PROXY' : 'https://168.169.96.2:800'
-        # 'CLOSESPIDER_PAGECOUNT' : 20,
+
     
     allowed_domains = ['amazon.com']
 
