@@ -35,10 +35,10 @@ class AmazonCrawler(CrawlSpider):
         'API_SCRAPOXY_PASSWORD' : 'Zxsa1254',
         'DOWNLOADER_MIDDLEWARES' : {
             'scrapoxy.downloadmiddlewares.proxy.ProxyMiddleware': 100,
-            'scrapoxy.downloadmiddlewares.wait.WaitMiddleware': 10,
-            'scrapoxy.downloadmiddlewares.scale.ScaleMiddleware': 102,
+            'scrapoxy.downloadmiddlewares.wait.WaitMiddleware': 101,
+            'scrapoxy.downloadmiddlewares.scale.ScaleMiddleware': None,
             'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
-         }
+        }
     }
 
     allowed_domains = ['amazon.com']
