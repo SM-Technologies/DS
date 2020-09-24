@@ -17,7 +17,7 @@ class AmazonCrawler(CrawlSpider):
     name = 'Amazon'
     custom_settings={
         'FEEDS':{
-            'listado.json':{
+            'listado1.json':{
                 'format': 'json',
                 'encoding': 'utf8',
                 'indent': 4,
@@ -25,17 +25,25 @@ class AmazonCrawler(CrawlSpider):
         },
         'USER_AGENT' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
         'ROBOTSTXT_OBEY' : True,
-        'DOWNLOAD_DELAY' : 0.3,
         'COOKIES_ENABLED': True,
-
-        'DEPTH_LIMIT': 10
+        'CLOSESPIDER_PAGECOUNT' : 5, # si no se limita el Scraper recorre todas las paginas
+        #Configuración de Scrapoxy tambien se debe inicializar con scrapoxy start conf.json -d
+        'CONCURRENT_REQUESTS_PER_DOMAIN' : 1,
+        'RETRY_TIMES' : 0,
+        'PROXY':'http://127.0.0.1:8888/?noconnect',
+        'API_SCRAPOXY' : 'http://127.0.0.1:8889/api',
+        'API_SCRAPOXY_PASSWORD' : 'Zxsa1254',
+        'DOWNLOADER_MIDDLEWARES' : {
+            'scrapoxy.downloadmiddlewares.proxy.ProxyMiddleware': 100,
+            'scrapoxy.downloadmiddlewares.wait.WaitMiddleware': 10,
+            'scrapoxy.downloadmiddlewares.scale.ScaleMiddleware': 102,
+            'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
+         }
     }
 
-    
     allowed_domains = ['amazon.com']
 
-    start_urls = ['https://www.amazon.com/s?k=headset']
-    # CUSTOM_PROXY = "https://168.169.96.2:800"
+    start_urls = ['https://www.amazon.com/s?k=ps4+videogames']
     
     
     rules =(
