@@ -17,7 +17,7 @@ class AmazonCrawler(CrawlSpider):
     name = 'Amazon'
     custom_settings={
         'FEEDS':{
-            'listado1.json':{
+            'listado2.json':{
                 'format': 'json',
                 'encoding': 'utf8',
                 'indent': 4,
@@ -26,7 +26,7 @@ class AmazonCrawler(CrawlSpider):
         'USER_AGENT' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
         'ROBOTSTXT_OBEY' : True,
         'COOKIES_ENABLED': True,
-        'CLOSESPIDER_PAGECOUNT' : 5, # si no se limita el Scraper recorre todas las paginas
+        # 'CLOSESPIDER_PAGECOUNT' : 3, # si no se limita el Scraper recorre todas las paginas
         #Configuración de Scrapoxy tambien se debe inicializar con scrapoxy start conf.json -d
         'CONCURRENT_REQUESTS_PER_DOMAIN' : 1,
         'RETRY_TIMES' : 0,
@@ -38,12 +38,14 @@ class AmazonCrawler(CrawlSpider):
             'scrapoxy.downloadmiddlewares.wait.WaitMiddleware': 101,
             'scrapoxy.downloadmiddlewares.scale.ScaleMiddleware': None,
             'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
-        }
+        },
+        'DEPTH_LIMIT':1
     }
 
     allowed_domains = ['amazon.com']
 
-    start_urls = ['https://www.amazon.com/s?k=ps4+videogames']
+    # start_urls = ['https://www.amazon.com/s?k=camisas+blancas']
+    start_urls = ['https://www.amazon.com/s?k=macbook&ref=nb_sb_noss_2']
     
     
     rules =(
