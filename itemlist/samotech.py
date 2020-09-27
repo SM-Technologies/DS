@@ -13,11 +13,11 @@ class Articulo(Item):
     url = Field()
     img = Field()
 
-class AmazonCrawler(CrawlSpider):
-    name = 'Amazon'
+class SamotechCrawler(CrawlSpider):
+    name = 'Samotech'
     custom_settings={
         'FEEDS':{
-            'listado2.json':{
+            'listado.json':{
                 'format': 'json',
                 'encoding': 'utf8',
                 'indent': 4,
@@ -28,7 +28,7 @@ class AmazonCrawler(CrawlSpider):
         'COOKIES_ENABLED': True,
         # 'CLOSESPIDER_PAGECOUNT' : 3, # si no se limita el Scraper recorre todas las paginas
         #Configuración de Scrapoxy tambien se debe inicializar con scrapoxy start conf.json -d
-        'CONCURRENT_REQUESTS_PER_DOMAIN' : 1,
+        'CONCURRENT_REQUESTS_PER_DOMAIN' : 16,
         'RETRY_TIMES' : 0,
         'PROXY':'http://127.0.0.1:8888/?noconnect',
         'API_SCRAPOXY' : 'http://127.0.0.1:8889/api',
@@ -39,7 +39,7 @@ class AmazonCrawler(CrawlSpider):
             'scrapoxy.downloadmiddlewares.scale.ScaleMiddleware': None,
             'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
         },
-        'DEPTH_LIMIT':1
+        'DEPTH_LIMIT':2
     }
 
     allowed_domains = ['amazon.com']
