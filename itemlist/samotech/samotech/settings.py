@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = 'samotech.spiders'
 
 #Configuración de Scrapoxy tambien se debe inicializar con scrapoxy start conf.json -d
 # CONCURRENT_REQUESTS_PER_DOMAIN = 2
-CLOSESPIDER_ITEMCOUNT= 50
+CLOSESPIDER_ITEMCOUNT= 48
 RETRY_TIMES : 0
 PROXY = 'http://127.0.0.1:8888/?noconnect'
 API_SCRAPOXY = 'http://127.0.0.1:8889/api'
