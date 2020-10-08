@@ -23,7 +23,7 @@ df=df.dropna()
 
 df.sort_values(by=['store'])
 
-df[['curency','Price']]=df.precio.str.split('  ',expand=True)
+df[['curency','Price']]=df.Price.str.split('  ',expand=True)
 df['Price'] = df['Price'].str.replace(',','')
 df['Price'] = df['Price'].str.replace('\s','')
 
