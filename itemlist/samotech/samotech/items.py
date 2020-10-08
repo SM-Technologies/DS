@@ -10,7 +10,7 @@ class Articulo(scrapy.Item):
     # name = scrapy.Field()
     store = scrapy.Field()
     name = scrapy.Field()
-    price = scrapy.Field()
+    Price = scrapy.Field()
     description = scrapy.Field()
     link = scrapy.Field()
     imageURL = scrapy.Field()
