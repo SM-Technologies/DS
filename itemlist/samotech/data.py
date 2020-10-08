@@ -11,42 +11,42 @@ df = pd.read_json('scraper.json',encoding='utf-8')
 df = pd.DataFrame(df)
 
 # Data Cleaning 
-df['tienda'] = df['tienda'].str.get(0)
-df['nombre'] = df['nombre'].str.get(0)
-df['url'] = df['url'].str.get(0)
-df['img'] = df['img'].str.get(0)
-df['precio'] = df['precio'].str.get(0)
-df['descripcion'] = df['descripcion'].str.join(', ')
-df['descripcion'] = df['descripcion'].str.replace(", ,","")
+df['store'] = df['store'].str.get(0)
+df['name'] = df['name'].str.get(0)
+df['link'] = df['link'].str.get(0)
+df['imageURL'] = df['imageURL'].str.get(0)
+df['Price'] = df['Price'].str.get(0)
+df['description'] = df['description'].str.join(', ')
+df['description'] = df['description'].str.replace(", ,","")
 
 df=df.dropna()
 
-df.sort_values(by=['tienda'])
+df.sort_values(by=['store'])
 
-df[['moneda','precio']]=df.precio.str.split('  ',expand=True)
-df['precio'] = df['precio'].str.replace(',','')
-df['precio'] = df['precio'].str.replace('\s','')
+df[['curency','Price']]=df.precio.str.split('  ',expand=True)
+df['Price'] = df['Price'].str.replace(',','')
+df['Price'] = df['Price'].str.replace('\s','')
 
 # Price Convertion
-df['precio']=pd.to_numeric(df['precio'])
+df['Price']=pd.to_numeric(df['Price'])
 
 def precios(df):
-    df.loc[df['moneda'] == 'US', 'precio'] = df['precio']*3800
-    df.loc[df['moneda'] == 'US', 'moneda'] = 'COP'
-    df.loc[df['moneda'] == 'C', 'precio'] = df['precio']*111
-    df.loc[df['moneda'] == 'C', 'moneda'] = 'COP'
-    df.loc[df['moneda'] == 'GBP', 'precio'] = df['precio']*5000
-    df.loc[df['moneda'] == 'GBP', 'moneda'] = 'COP'
+    df.loc[df['curency'] == 'US', 'Price'] = df['Price']*3800
+    df.loc[df['curency'] == 'US', 'curency'] = 'COP'
+    df.loc[df['curency'] == 'C', 'Price'] = df['Price']*111
+    df.loc[df['curency'] == 'C', 'curency'] = 'COP'
+    df.loc[df['curency'] == 'GBP', 'Price'] = df['Price']*5000
+    df.loc[df['curency'] == 'GBP', 'curency'] = 'COP'
     return df
 
 # DataFrame with Converted Prices
 df= precios(df)
 
 # Sorting By Price
-df_o=df.sort_values(by=['precio'])
-df_o=df_o[['tienda','nombre','url','img','moneda','precio','descripcion']]
-
-print(df_o.head(1))
+df_o=df.sort_values(by=['Price'])
+df_o=df_o[['store','name','link','imageURL','curency','Price','description']]
+df_o = df_o[1,:]
+# print(df_o.head(1))
 #Export DataFrame
 df_o.to_json(r'df.json', orient='records',indent=4,force_ascii=True)
 
