@@ -44,9 +44,10 @@ df= precios(df)
 
 # Sorting By Price
 df_o=df.sort_values(by=['precio'])
-print(df[['tienda','nombre','url','img','moneda','precio','descripcion']])
+df_o=df_o[['tienda','nombre','url','img','moneda','precio','descripcion']]
 
+print(df_o.head(1))
 #Export DataFrame
-df_o.to_json (r'df.json', orient='records',indent=4)
+df_o.to_json(r'df.json', orient='records',indent=4,force_ascii=True)
 
 
