@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = 'samotech.spiders'
 
 #Configuración de Scrapoxy tambien se debe inicializar con scrapoxy start conf.json -d
 # CONCURRENT_REQUESTS_PER_DOMAIN = 2
-CLOSESPIDER_ITEMCOUNT= 48
+CLOSESPIDER_ITEMCOUNT= 24
 RETRY_TIMES : 0
 PROXY = 'http://127.0.0.1:8888/?noconnect'
 API_SCRAPOXY = 'http://127.0.0.1:8889/api'
@@ -27,7 +27,7 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 50
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
