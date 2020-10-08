@@ -20,7 +20,7 @@ class SamotechCrawler(CrawlSpider):
                 'indent': 4,
             },
         },
-        'FEED_EXPORT_FIELDS':['tienda','nombre','url','img','precio','descripcion'],  
+        'FEED_EXPORT_FIELDS':['store','name','link','imageURL','Price','description'],  
         'DEPTH_LIMIT':1
     }
 
@@ -124,12 +124,12 @@ class SamotechCrawler(CrawlSpider):
             link=response.url
             image= response.xpath('//div[@class="imgTagWrapper"]/img/@data-old-hires').extract()
                   
-            item.add_value('tienda','Amazon')
-            item.add_value('url',link),
-            item.add_value('img',image),
-            item.add_xpath('nombre','//h1[@id="title"]/span/text()', MapCompose(self.textCleaning)),
-            item.add_xpath('precio','//span[@id="priceblock_ourprice"]/text()', MapCompose(self.priceCleaningA)),
-            item.add_xpath('descripcion','//div[@id="feature-bullets"]/ul/li/span/text()',MapCompose(self.textCleaning))
+            item.add_value('store','Amazon')
+            item.add_value('link',link),
+            item.add_value('imageURL',image),
+            item.add_xpath('name','//h1[@id="title"]/span/text()', MapCompose(self.textCleaning)),
+            item.add_xpath('Price','//span[@id="priceblock_ourprice"]/text()', MapCompose(self.priceCleaningA)),
+            item.add_xpath('description','//div[@id="feature-bullets"]/ul/li/span/text()',MapCompose(self.textCleaning))
             yield item.load_item()    
             self.item_countA= self.item_countA+1        
         else:
@@ -148,12 +148,12 @@ class SamotechCrawler(CrawlSpider):
 
         if self.item_countM < 8:
             link = response.url
-            item.add_value('tienda','MercadoLibre')
-            item.add_value('url',link)
-            item.add_xpath('img','//figure[contains(@class,"gallery-image-container")][1]/a/@href')
-            item.add_xpath('nombre','//header[@class="item-title"]/h1/text()', MapCompose(self.textCleaning))
-            item.add_xpath('precio','//span[@class="price-tag-fraction"]/text()',MapCompose(self.priceCleaningM))
-            item.add_xpath('descripcion','//section[contains(@class,"item-description")]/div/div[@class="item-description__text"]/p',MapCompose(self.textCleaning))
+            item.add_value('store','MercadoLibre')
+            item.add_value('link',link)
+            item.add_xpath('imageURL','//figure[contains(@class,"gallery-image-container")][1]/a/@href')
+            item.add_xpath('name','//header[@class="item-title"]/h1/text()', MapCompose(self.textCleaning))
+            item.add_xpath('Price','//span[@class="price-tag-fraction"]/text()',MapCompose(self.priceCleaningM))
+            item.add_xpath('description','//section[contains(@class,"item-description")]/div/div[@class="item-description__text"]/p',MapCompose(self.textCleaning))
             yield item.load_item()
             self.item_countM= self.item_countM+1
         else:
@@ -171,12 +171,12 @@ class SamotechCrawler(CrawlSpider):
 
         if self.item_countE < 8:
             link = response.url
-            item.add_value('tienda','Ebay')
-            item.add_value('url',link)
-            item.add_xpath('img','//div[@id="mainImgHldr"]/img[@id="icImg"]/@src')
-            item.add_xpath('nombre','//h1[@id="itemTitle"]/text()[1]')
-            item.add_xpath('precio','//span[@id="prcIsum"]/text()', MapCompose(self.priceCleaningE))
-            item.add_xpath('descripcion','//span[@id="vi-cond-addl-info"]/text()') 
+            item.add_value('store','Ebay')
+            item.add_value('link',link)
+            item.add_xpath('imageURL','//div[@id="mainImgHldr"]/img[@id="icImg"]/@src')
+            item.add_xpath('name','//h1[@id="itemTitle"]/text()[1]')
+            item.add_xpath('Price','//span[@id="prcIsum"]/text()', MapCompose(self.priceCleaningE))
+            item.add_xpath('description','//span[@id="vi-cond-addl-info"]/text()') 
             yield item.load_item()
             self.item_countE= self.item_countE+1 
         else:

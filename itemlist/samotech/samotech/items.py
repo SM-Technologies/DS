@@ -8,9 +8,9 @@ import scrapy
 class Articulo(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    tienda = scrapy.Field()
-    nombre = scrapy.Field()
-    precio = scrapy.Field()
-    descripcion = scrapy.Field()
-    url = scrapy.Field()
-    img = scrapy.Field()
+    store = scrapy.Field()
+    name = scrapy.Field()
+    price = scrapy.Field()
+    description = scrapy.Field()
+    link = scrapy.Field()
+    imageURL = scrapy.Field()
