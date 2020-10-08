@@ -14,7 +14,7 @@ class SamotechCrawler(CrawlSpider):
     item_countE = 0
     custom_settings={
         'FEEDS':{
-            'listado.json':{
+            'scraper.json':{
                 'format': 'json',
                 'encoding': 'utf8',
                 'indent': 4,
@@ -90,11 +90,28 @@ class SamotechCrawler(CrawlSpider):
         newText = text.replace('\n',' ').replace('\r',' ').replace('\t',' ').replace('<p>',' ').replace('<br>',' ').replace('</p>',' ').replace('</br>',' ').strip()
         return newText
 
-    def priceCleaning(self,text):
+    def priceCleaningA(self,text):
         """
         Funcion para limpiar el precio obtenido
         """
         newText = text.replace('$',' ').strip()
+        newText = 'US  '+newText
+        return newText
+
+    def priceCleaningM(self,text):
+        """
+        Funcion para limpiar el precio obtenido
+        """
+        newText = text.replace('$',' ').replace('.','').strip()
+        newText = 'COP  '+newText
+        return newText
+    
+    def priceCleaningE(self,text):
+        """
+        Funcion para limpiar el precio obtenido
+        """
+        newText = text.replace('$',' ').replace(',','.').replace('P ','P  ').strip()
+        
         return newText
 
     def parse_items(self,response):
@@ -103,15 +120,15 @@ class SamotechCrawler(CrawlSpider):
         """
         item = ItemLoader(Articulo(),response)
 
-        if self.item_countA < 16:
+        if self.item_countA < 8:
             link=response.url
             image= response.xpath('//div[@class="imgTagWrapper"]/img/@data-old-hires').extract()
-                    
+                  
             item.add_value('tienda','Amazon')
             item.add_value('url',link),
             item.add_value('img',image),
             item.add_xpath('nombre','//h1[@id="title"]/span/text()', MapCompose(self.textCleaning)),
-            item.add_xpath('precio','//span[@id="priceblock_ourprice"]/text()', MapCompose(self.priceCleaning)),
+            item.add_xpath('precio','//span[@id="priceblock_ourprice"]/text()', MapCompose(self.priceCleaningA)),
             item.add_xpath('descripcion','//div[@id="feature-bullets"]/ul/li/span/text()',MapCompose(self.textCleaning))
             yield item.load_item()    
             self.item_countA= self.item_countA+1        
@@ -129,13 +146,13 @@ class SamotechCrawler(CrawlSpider):
         """
         item = ItemLoader(Articulo(),response)
 
-        if self.item_countM < 16:
+        if self.item_countM < 8:
             link = response.url
             item.add_value('tienda','MercadoLibre')
             item.add_value('url',link)
-            item.add_xpath('img','//figure[contains(@class,"thumbgallery_default-0")]/a/@href')
+            item.add_xpath('img','//figure[contains(@class,"gallery-image-container")][1]/a/@href')
             item.add_xpath('nombre','//header[@class="item-title"]/h1/text()', MapCompose(self.textCleaning))
-            item.add_xpath('precio','//span[@class="price-tag-fraction"]/text()', MapCompose(self.priceCleaning))
+            item.add_xpath('precio','//span[@class="price-tag-fraction"]/text()',MapCompose(self.priceCleaningM))
             item.add_xpath('descripcion','//section[contains(@class,"item-description")]/div/div[@class="item-description__text"]/p',MapCompose(self.textCleaning))
             yield item.load_item()
             self.item_countM= self.item_countM+1
@@ -152,14 +169,14 @@ class SamotechCrawler(CrawlSpider):
         """
         item = ItemLoader(Articulo(),response)
 
-        if self.item_countE < 16:
+        if self.item_countE < 8:
             link = response.url
             item.add_value('tienda','Ebay')
             item.add_value('url',link)
-            item.add_xpath('img','//figure[contains(@class,"thumbgallery_default-0")]/a/@href')
+            item.add_xpath('img','//div[@id="mainImgHldr"]/img[@id="icImg"]/@src')
             item.add_xpath('nombre','//h1[@id="itemTitle"]/text()[1]')
-            item.add_xpath('precio','//span[@id="prcIsum"]/text()', MapCompose(self.priceCleaning))
-            item.add_xpath('descripcion','//div[@id="ds_div"]//text()') 
+            item.add_xpath('precio','//span[@id="prcIsum"]/text()', MapCompose(self.priceCleaningE))
+            item.add_xpath('descripcion','//span[@id="vi-cond-addl-info"]/text()') 
             yield item.load_item()
             self.item_countE= self.item_countE+1 
         else:
