@@ -37,6 +37,8 @@ def precios(df):
     df.loc[df['curency'] == 'C', 'curency'] = 'COP'
     df.loc[df['curency'] == 'GBP', 'Price'] = df['Price']*5000
     df.loc[df['curency'] == 'GBP', 'curency'] = 'COP'
+    df.loc[df['curency'] == 'EUR', 'Price'] = df['Price']*4500
+    df.loc[df['curency'] == 'EUR', 'curency'] = 'COP'
     return df
 
 # DataFrame with Converted Prices

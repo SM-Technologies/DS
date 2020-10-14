@@ -110,7 +110,7 @@ class SamotechCrawler(CrawlSpider):
         """
         Funcion para limpiar el precio obtenido
         """
-        newText = text.replace('$',' ').replace(',','.').replace('P ','P  ').strip()
+        newText = text.replace('$',' ').replace(',','.').replace('P ','P  ').replace('EUR ','EUR  ').strip()
         
         return newText
 
