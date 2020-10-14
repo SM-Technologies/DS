@@ -133,3 +133,4 @@ dmypy.json
 *.json
 !conf.json
 conf.json
+conf.json
