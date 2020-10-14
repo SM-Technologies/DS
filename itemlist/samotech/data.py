@@ -2,6 +2,10 @@ import pandas as pd
 import os
 import sys
 
+# Remove previous search
+
+os.remove("df.json")
+os.remove("scraper.json")
 # #Read json from my scraper
 search=sys.argv[1]
 scraper = os.system(f'scrapy crawl samotech -a search="{search}"')
