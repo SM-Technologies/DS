@@ -130,7 +130,5 @@ dmypy.json
 # vscode
 .vscode/
 #json
-*.json
-!conf.json
 conf.json
-conf.json
+
