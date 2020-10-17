@@ -10,8 +10,7 @@ def call_scraper(search):
     This function calls my Scraper with an input search
     """
     search_str = f'"{search}"'
-    scraper = os.system(
-        f'scrapy crawl samotech -a search={search_str}')
+    scraper = os.system(f'scrapy crawl samotech -a search={search_str}')
     print(type(scraper))
     df = pd.read_json('scraper.json', encoding='utf-8')
     return df
