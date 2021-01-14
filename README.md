@@ -2,7 +2,7 @@
 
 [![Scrapy](https://miro.medium.com/max/700/1*7KVe2szj1rjt1_Jlmdznkw.png)](https://scrapy.org)
 
-This is the repo for out Web Scraper in Samotech project. Its based in Scrapy and use Pandas to clean the data.
+This is the repo for the Web Scraper in Samotech project. Its based in Scrapy and use Pandas to clean the data.
 
 Scrapy is a fast high-level web crawling and web scraping framework, used to crawl websites and extract structured data from their pages. Pandas is an open source Python library that allows users to explore, manipulate and visualise data in an extremely efficient manner. It is literally Microsoft Excel in Python.
 
