@@ -1,13 +1,14 @@
 # DataScience
 
-[![Scrapy](https://miro.medium.com/max/700/1*7KVe2szj1rjt1_Jlmdznkw.png)](https://scrapy.org)
+[<img src="https://miro.medium.com/max/700/1*7KVe2szj1rjt1_Jlmdznkw.png" width="50%"/>](https://scrapy.org)
 
 This is the repo for the Web Scraper in Samotech project. Its based in Scrapy and use Pandas to clean the data.
 
 Scrapy is a fast high-level web crawling and web scraping framework, used to crawl websites and extract structured data from their pages. Pandas is an open source Python library that allows users to explore, manipulate and visualise data in an extremely efficient manner. It is literally Microsoft Excel in Python.
 
 You can find our documentation here:
-[![Notion](https://seeklogo.com/images/N/notion-app-logo-009B1538E8-seeklogo.com.png)](https://www.notion.so/Development-737e4ccbc7d9409d98ab6d2aaacaa517)
+[<img src="https://seeklogo.com/images/N/notion-app-logo-009B1538E8-seeklogo.com.png" width="48"/>](https://www.notion.so/Development-737e4ccbc7d9409d98ab6d2aaacaa517)
+
 
 Once Scrapy project is configured as documentation says, our starting point would be data.py located in the root of Samotech project.
 This python script is responsible for start our scraper with a search input. 
